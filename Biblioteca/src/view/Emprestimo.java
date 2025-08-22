@@ -1,0 +1,11 @@
+package view;
+
+public class Emprestimo {
+	int indiceLivro;
+	String aluno;
+
+	Emprestimo(int indiceLivro, String aluno) {
+		this.indiceLivro = indiceLivro;
+		this.aluno = aluno;
+	}
+}

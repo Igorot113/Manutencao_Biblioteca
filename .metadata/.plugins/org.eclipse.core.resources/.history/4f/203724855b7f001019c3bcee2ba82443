@@ -1,0 +1,8 @@
+package util;
+
+public class ISBN {
+	
+	public static boolean ISBN_10(String codigo) {
+		
+	}
+}

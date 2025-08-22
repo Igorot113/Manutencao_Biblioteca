@@ -1,0 +1,48 @@
+package view;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import util.ISBN;
+
+public class Biblioteca {
+
+	static ArrayList<Livro> livros = new ArrayList<>();
+	static ArrayList<Emprestimo> emprestimos = new ArrayList<>();
+
+	public static void cadastrarLivro(String titulo, String autor,String isbn) {
+		ISBN.Verif_ISBN(isbn);
+		livros.add(new Livro(titulo, autor,isbn));
+		System.out.println("Livro cadastrado com sucesso!");
+	}
+
+	public static void listarLivros() {
+		System.out.println("Lista de livros disponíveis:");
+		for (int i = 0; i < livros.size(); i++) {
+			System.out.println(i + " - " + livros.get(i).titulo + " | Autor: " + livros.get(i).autor);
+		}
+	}
+
+	public static void emprestarLivro(int indiceLivro, String aluno) {
+		emprestimos.add(new Emprestimo(indiceLivro, aluno));
+		System.out.println("Livro \"" + livros.get(indiceLivro).titulo + "\" emprestado para " + aluno);
+	}
+
+	public static void listarEmprestimos() {
+		System.out.println("Empréstimos realizados:");
+		for (Emprestimo e : emprestimos) {
+			System.out.println("Aluno: " + e.aluno + " | Livro: " + livros.get(e.indiceLivro).titulo);
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		cadastrarLivro("Dom Quixote", "Miguel de Cervantes","123456789X");
+		cadastrarLivro("O Pequeno Príncipe", "Antoine de Saint-Exupéry","1234567893467");
+		listarLivros();
+		emprestarLivro(0, "João");
+		listarEmprestimos();
+		sc.close();
+	}
+
+}

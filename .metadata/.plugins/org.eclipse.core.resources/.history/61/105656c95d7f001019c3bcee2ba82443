@@ -1,0 +1,16 @@
+package util;
+
+public class ISBN {
+
+	public static boolean Verif_ISBN(String codigo) {
+		try {
+			if (codigo.length() == 10 || codigo.length() == 13) {
+			} else {
+				System.out.println("Codigo inserido não é do padrao ISBN-10 e ISBN-13");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+}

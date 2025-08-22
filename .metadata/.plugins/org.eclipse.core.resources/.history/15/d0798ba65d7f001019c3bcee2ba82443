@@ -1,0 +1,12 @@
+package view;
+
+public class Livro {
+	String titulo;
+	String autor;
+	String isbn;
+
+	Livro(String titulo, String autor,String isbn) {
+		this.titulo = titulo;
+		this.autor = autor;
+	}
+}

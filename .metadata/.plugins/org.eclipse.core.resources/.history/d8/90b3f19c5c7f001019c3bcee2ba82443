@@ -1,0 +1,20 @@
+package util;
+
+public class ISBN {
+
+	public static int ISBN_10(String codigo) {
+		int isbn = 0;
+		try {
+			if (codigo.length() == 10) {
+				isbn = Integer.parseInt(codigo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return isbn;
+	}
+
+	public static void ISBN_13(String codigo) {
+
+	}
+}

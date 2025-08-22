@@ -1,0 +1,18 @@
+package util;
+
+public class ISBN {
+
+	public static boolean Verif_ISBN(String codigo) {
+		try {
+			if (codigo.length() == 10 || codigo.length() == 13) {
+				return true;
+			} else {
+				System.out.println("Codigo inserido não é do padrao ISBN-10 e ISBN-13");
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("Erro em passar String em int");
+			return false;
+		}
+	}
+}
