@@ -1,0 +1,25 @@
+package util;
+
+public class Livro {
+	String titulo;
+	String autor;
+	static ArrayList<Livro> livros = new ArrayList<>();
+
+	Livro(String titulo, String autor) {
+		this.titulo = titulo;
+		this.autor = autor;
+	}
+
+	public static void cadastrarLivro(String titulo, String autor) {
+		livros.add(new Livro(titulo, autor));
+		System.out.println("Livro cadastrado com sucesso!");
+	}
+
+	public static void listarLivros() {
+		System.out.println("Lista de livros disponíveis:");
+		for (int i = 0; i < livros.size(); i++) {
+			System.out.println(i + " - " + livros.get(i).titulo + " | Autor: " + livros.get(i).autor);
+		}
+	}
+
+}

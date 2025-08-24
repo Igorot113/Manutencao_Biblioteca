@@ -1,0 +1,18 @@
+package view;
+
+import java.time.LocalDate;
+
+public class Emprestimo {
+	int indiceLivro;
+	String aluno;
+	LocalDate dataEmprestimo;
+	LocalDate dataEntrega;
+
+	public Emprestimo(int indiceLivro, String aluno,LocalDate dataEmprestimo) {
+		this.indiceLivro = indiceLivro;
+		this.aluno = aluno;
+		this.dataEmprestimo = dataEmprestimo;
+	}
+	
+	
+}

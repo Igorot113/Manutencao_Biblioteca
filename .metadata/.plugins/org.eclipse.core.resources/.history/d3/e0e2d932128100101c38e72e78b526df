@@ -1,0 +1,11 @@
+package util;
+
+public class Emprestimo {
+	public int indiceLivro;
+	public String aluno;
+
+	public Emprestimo(int indiceLivro, String aluno) {
+		this.indiceLivro = indiceLivro;
+		this.aluno = aluno;
+	}
+}

@@ -1,0 +1,41 @@
+package view;
+
+import java.util.Scanner;
+
+import util.Data;
+import util.Util;
+
+public class Biblioteca {
+	public static void main(String[] args) {
+		Data data = new Data();
+		Util util = new Util();
+		Scanner sc = new Scanner(System.in);
+		String codigo = "1234567892";
+		boolean verif = true;
+		while (verif) {
+			// codigo = sc.next();
+			boolean codigoVerificado = util.verif_ISBN(codigo);
+			if (codigoVerificado) {
+				verif = false;
+			} else {
+				System.out.println("Codigo invalido");
+				continue;
+			}
+		}
+		util.cadastrarLivro("Dom Quixote", "Miguel de Cervantes", codigo);
+		util.cadastrarLivro("O Pequeno Príncipe", "Antoine de Saint-Exupéry", codigo);
+		util.listarLivros();
+		System.out.print("Voce é professor(1) ou aluno(2): ");
+		int opcao = sc.nextInt();
+		System.out.print("Digite o inidice do livro: ");
+		int indice = sc.nextInt();
+		System.out.print("Digite seu nome: ");
+		String nome = sc.next();
+		sc.nextLine();
+		util.listarEmprestimos(opcao);
+		util.emprestarLivro(0, "João");
+		util.emprestarLivro(1, "Pedro");
+		//util.listarEmprestimos();
+		sc.close();
+	}
+}

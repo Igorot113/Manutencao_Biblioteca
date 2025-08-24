@@ -1,0 +1,49 @@
+package view;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class Emprestimo {
+	int indiceLivro;
+	String aluno;
+	LocalDate dataEmprestimo;
+	LocalDate dataEntrega;
+
+	public Emprestimo(int indiceLivro, String aluno,LocalDate dataEmprestimo) {
+		this.indiceLivro = indiceLivro;
+		this.aluno = aluno;
+		this.dataEmprestimo = dataEmprestimo;
+	}
+
+	public int getIndiceLivro() {
+		return indiceLivro;
+	}
+
+	public void setIndiceLivro(int indiceLivro) {
+		this.indiceLivro = indiceLivro;
+	}
+
+	public String getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(String aluno) {
+		this.aluno = aluno;
+	}
+
+	public String getDataEmprestimo() {
+		return dataEmprestimo;
+	}
+
+	public void setDataEmprestimo(LocalDate dataEmprestimo) {
+		this.dataEmprestimo = dataEmprestimo;
+	}
+
+	public LocalDate getDataEntrega() {
+		return dataEntrega;
+	}
+
+	public void setDataEntrega(LocalDate dataEntrega) {
+		this.dataEntrega = dataEntrega;
+	}
+}

@@ -1,0 +1,8 @@
+package util;
+
+public class Multa {
+	
+	public int Multa() {
+		
+	}
+}

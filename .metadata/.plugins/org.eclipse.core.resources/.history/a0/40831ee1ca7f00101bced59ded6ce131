@@ -1,0 +1,86 @@
+package util;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import view.Emprestimo;
+import view.Livro;
+
+public class util {
+
+	static ArrayList<Livro> livros = new ArrayList<>();
+	static ArrayList<Emprestimo> emprestimos = new ArrayList<>();
+
+	public boolean Verif_ISBN(String codigo) {
+		try {
+			if (codigo.length() == 10 || codigo.length() == 13) {
+				return true;
+			} else {
+				System.out.println("Codigo inserido não é do padrao ISBN-10 e ISBN-13");
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("Erro em passar String em int");
+			return false;
+		}
+	}
+
+	public void listarEmprestimos() {
+		Data data = new Data();
+		System.out.println("Empréstimos realizados:");
+		for (Emprestimo e : emprestimos) {
+			System.out.println("Aluno: " + e.getAluno() + " | Livro: " + livros.get(e.getIndiceLivro()).getTitulo()
+					+ " | Data do emprestimo " + data.dataFormatada + " | Data de entrega: "
+					+ data.dataEntregaAlunoFormatado);
+		}
+	}
+
+	public void listarEmprestimosProfessor() {
+		Data data = new Data();
+		System.out.println("Empréstimos realizados:");
+		for (Emprestimo e : emprestimos) {
+			System.out.println("Aluno: " + e.getAluno() + " | Livro: " + livros.get(e.getIndiceLivro()).getTitulo()
+					+ " | Data do emprestimo " + data.dataFormatada + " | Data de entrega: "
+					+ data.dataEntregaProfessorFormatado);
+		}
+	}
+
+	public void emprestarLivro(int indiceLivro, String aluno, LocalDate dataEmprestimo) {
+		DateTimeFormatter formatoBrasileiro = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getAluno().equals(aluno)) {
+				System.out.println("Erro aluno ja tem livros");
+				return;
+			}
+		}
+		emprestimos.add(new Emprestimo(indiceLivro, aluno, dataEmprestimo));
+		System.out.println("Livro \"" + livros.get(indiceLivro).getTitulo() + "\" emprestado para " + aluno + "\" data emprestada: " + dataEmprestimo.format("dd/MM/yyyy"));
+	}
+
+	public void listarLivros() {
+		System.out.println("Lista de livros disponíveis:");
+		for (int i = 0; i < livros.size(); i++) {
+			System.out.println(i + " - " + livros.get(i).getTitulo() + " | Autor: " + livros.get(i).getAutor()
+					+ " | ISBN: " + livros.get(i).getIsbn() + " | Edição: " + livros.get(i).getEdicao());
+		}
+	}
+
+	public void cadastrarLivro(String titulo, String autor, String isbn, String edicao) {
+		Scanner sc = new Scanner(System.in);
+		boolean verif = true;
+		while (verif) {
+			if (Verif_ISBN(isbn)) {
+				verif = false;
+			} else {
+				System.out.println("Digite o codigo mais uma vez: ");
+				sc.next();
+				sc.nextLine();
+				continue;
+			}
+		}
+		livros.add(new Livro(titulo, autor, isbn, edicao));
+		System.out.println("Livro cadastrado com sucesso!");
+	}
+}

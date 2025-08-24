@@ -1,0 +1,16 @@
+package util;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class Data {
+	LocalDate dataAtual = LocalDate.now();
+	LocalDate dataEntregaAluno = dataAtual.plusDays(7);
+	LocalDate dataEntregaProfessor = dataAtual.plusDays(15);
+
+	DateTimeFormatter formatoBrasileiro = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	String dataFormatada = dataAtual.format(formatoBrasileiro);
+	String dataEntregaAlunoFormatado = dataEntregaAluno.format(formatoBrasileiro);
+	String dataEntregaProfessorFormatado = dataEntregaProfessor.format(formatoBrasileiro);
+}

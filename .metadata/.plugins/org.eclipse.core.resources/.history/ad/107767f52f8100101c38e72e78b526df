@@ -1,0 +1,75 @@
+package util;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+
+public class Util {
+	Data data = new Data();
+	public static ArrayList<Emprestimo> emprestimos = new ArrayList<>();
+	public static ArrayList<Livro> livros = new ArrayList<>();
+
+	public void emprestarLivro(int indiceLivro, String aluno, int funcao) {
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.aluno.equals(aluno)) {
+				System.out.println("Essa pessoa ja possui emprestimos");
+				return;
+			}
+		}
+		emprestimos.add(new Emprestimo(indiceLivro, aluno, funcao));
+		System.out.println("Livro \"" + livros.get(indiceLivro).titulo + "\" emprestado para " + aluno);
+	}
+
+	public void listarEmprestimos() {
+		System.out.println("Empréstimos realizados:");
+		for (Emprestimo e : emprestimos) {
+			if (e.funcao == 1) {
+				System.out.println("Professor: " + e.aluno + " | Livro: " + livros.get(e.indiceLivro).titulo
+						+ "| Data de entrega: " + data.dataEntregaProfessorFormatado);
+			} else {
+				System.out.println("Aluno: " + e.aluno + " | Livro: " + livros.get(e.indiceLivro).titulo
+						+ "| Data de entrega: " + data.dataEntregaAlunoFormatado);
+			}
+		}
+	}
+
+	public void cadastrarLivro(String titulo, String autor, String ISBN) {
+		livros.add(new Livro(titulo, autor, ISBN));
+		System.out.println("Livro cadastrado com sucesso!");
+	}
+
+	public boolean verif_ISBN(String ISBN) {
+		if (ISBN.length() == 10 || ISBN.length() == 13) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void listarLivros() {
+		System.out.println("Lista de livros disponíveis:");
+		for (int i = 0; i < livros.size(); i++) {
+			System.out.println(i + " - " + livros.get(i).titulo + " | Autor: " + livros.get(i).autor + " | ISBN: "
+					+ livros.get(i).ISBN);
+		}
+	}
+
+	public double Multa(LocalDate dataEntregaReal, Emprestimo emprestimo) {
+		if (emprestimo.funcao == 1) {
+			if (dataEntregaReal.isAfter(data.dataEntregaProfessor)) {
+				long diasAtraso = ChronoUnit.DAYS.between(data.dataEntregaProfessor, dataEntregaReal);
+				return diasAtraso * 2;
+			} else {
+				return 0.0;
+			}
+		} else {
+			if (dataEntregaReal.isAfter(data.dataEntregaAluno)) {
+				long diasAtraso = ChronoUnit.DAYS.between(data.dataEntregaAluno, dataEntregaReal);
+				return diasAtraso * 2;
+			} else {
+				return 0.0;
+			}
+		}
+	}
+
+}

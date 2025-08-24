@@ -1,0 +1,12 @@
+package util;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+public class Multa {
+	Data data = new Data();
+	public long DiasdeMulta(LocalDate dataDevolvida) {
+		long diasMultas = ChronoUnit.DAYS.between(dataEntrega, dataDevolvida);
+		return diasMultas;
+	}
+}

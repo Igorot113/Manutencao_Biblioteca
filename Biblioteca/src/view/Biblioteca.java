@@ -1,64 +1,38 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-
-import util.ISBN;
+import util.Util;
 
 public class Biblioteca {
-
-	static ArrayList<Livro> livros = new ArrayList<>();
-	static ArrayList<Emprestimo> emprestimos = new ArrayList<>();
-
-	public static void cadastrarLivro(String titulo, String autor,String isbn) {
+	public static void main(String[] args) {
+		Util util = new Util();
 		Scanner sc = new Scanner(System.in);
+		String codigo = "1234567892";
 		boolean verif = true;
-		while(verif) {
-			if(ISBN.Verif_ISBN(isbn)) {
+		while (verif) {
+			boolean codigoVerificado = util.verif_ISBN(codigo);
+			if (codigoVerificado) {
 				verif = false;
-			}else {
-				System.out.println("Digite o codigo mais uma vez: ");
-				sc.next();
-				sc.nextLine();
+			} else {
+				System.out.println("Codigo invalido");
 				continue;
 			}
 		}
-		livros.add(new Livro(titulo, autor,isbn));
-		System.out.println("Livro cadastrado com sucesso!");
-	}
-
-	public static void listarLivros() {
-		System.out.println("Lista de livros disponíveis:");
-		for (int i = 0; i < livros.size(); i++) {
-			System.out.println(i + " - " + livros.get(i).titulo + " | Autor: " + livros.get(i).autor);
-		}
-	}
-
-	public static void emprestarLivro(int indiceLivro, String aluno) {
-		emprestimos.add(new Emprestimo(indiceLivro, aluno));
-		System.out.println("Livro \"" + livros.get(indiceLivro).titulo + "\" emprestado para " + aluno);
-	}
-
-	public static void listarEmprestimos() {
-		System.out.println("Empréstimos realizados:");
-		for (Emprestimo e : emprestimos) {
-			System.out.println("Aluno: " + e.aluno + " | Livro: " + livros.get(e.indiceLivro).titulo);
-		}
-	}
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		String isbn;
-		System.out.println("Digite o codigo do isbn: ");
-		isbn = sc.next();
-		cadastrarLivro("Dom Quixote", "Miguel de Cervantes",isbn);
-		System.out.println("Digite o codigo do isbn: ");
-		isbn = sc.next();
-		cadastrarLivro("O Pequeno Príncipe", "Antoine de Saint-Exupéry",isbn);
-		listarLivros();
-		emprestarLivro(0, "João");
-		listarEmprestimos();
+		util.cadastrarLivro("Dom Quixote", "Miguel de Cervantes", codigo);
+		util.cadastrarLivro("O Pequeno Príncipe", "Antoine de Saint-Exupéry", codigo);
+		util.listarLivros();
+		System.out.print("Voce é professor(1) ou aluno(2): ");
+		int opcao = sc.nextInt();
+		System.out.print("Digite seu nome: ");
+		String nome = sc.next();
+		System.out.print("Digite o indice do livro: ");
+		int indice = sc.nextInt();
+		util.emprestarLivro(indice, nome, opcao);
+		util.listarEmprestimos();
+//		util.devolverLivro(indice);
+		util.emprestarLivro(1,"Pedro", 2);
+		util.listarEmprestimos();
+		util.gerarRelatorioLivrosMaisEmprestadosMes();
 		sc.close();
 	}
-
 }

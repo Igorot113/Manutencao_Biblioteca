@@ -1,0 +1,28 @@
+package util;
+
+import view.Emprestimo;
+
+public class ISBN {
+
+	public static boolean Verif_ISBN(String codigo) {
+		try {
+			if (codigo.length() == 10 || codigo.length() == 13) {
+				return true;
+			} else {
+				System.out.println("Codigo inserido não é do padrao ISBN-10 e ISBN-13");
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("Erro em passar String em int");
+			return false;
+		}
+	}
+	
+	public static void listarEmprestimos() {
+		System.out.println("Empréstimos realizados:");
+		for (Emprestimo e : emprestimos) {
+			System.out.println("Aluno: " + e.aluno + " | Livro: " + livros.get(e.indiceLivro).titulo);
+		}
+	}
+	
+}

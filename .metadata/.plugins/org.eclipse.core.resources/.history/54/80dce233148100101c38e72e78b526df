@@ -1,0 +1,74 @@
+package util;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
+public class Data {
+	LocalDate dataAtual = LocalDate.now();
+	LocalDate dataEntregaAluno = dataAtual.plusDays(7);
+	LocalDate dataEntregaProfessor = dataAtual.plusDays(15);
+
+	DateTimeFormatter formatoBrasileiro = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	String dataFormatada = dataAtual.format(formatoBrasileiro);
+	String dataEntregaAlunoFormatado = dataEntregaAluno.format(formatoBrasileiro);
+	String dataEntregaProfessorFormatado = dataEntregaProfessor.format(formatoBrasileiro);
+	
+	public double MultaAluno(LocalDate dataEntregaAluno, LocalDate dataEntregaReal) {
+		if(dataEntregaReal.isAfter(dataEntregaAluno)) {
+			long diasAtraso = ChronoUnit.DAYS.between(dataEntregaAluno, dataEntregaReal);
+			return diasAtraso*2;
+		}else {
+			return 0.0;
+		}
+	}
+	public double MultaProfessor(LocalDate dataEntregaProfessor,LocalDate dataEntregaReal) {
+		if(dataEntregaReal.isAfter(dataEntregaProfessor)) {
+			long diasAtraso = ChronoUnit.DAYS.between(dataEntregaProfessor, dataEntregaReal);
+			return diasAtraso*2;
+		}else {
+			return 0.0;
+		}
+	}
+
+	public String getDataFormatada() {
+		return dataFormatada;
+	}
+
+	public void setDataFormatada(String dataFormatada) {
+		this.dataFormatada = dataFormatada;
+	}
+
+	public LocalDate getDataEntregaAluno() {
+		return dataEntregaAluno;
+	}
+
+	public void setDataEntregaAluno(LocalDate dataEntregaAluno) {
+		this.dataEntregaAluno = dataEntregaAluno;
+	}
+
+	public LocalDate getDataEntregaProfessor() {
+		return dataEntregaProfessor;
+	}
+
+	public void setDataEntregaProfessor(LocalDate dataEntregaProfessor) {
+		this.dataEntregaProfessor = dataEntregaProfessor;
+	}
+
+	public String getDataEntregaAlunoFormatado() {
+		return dataEntregaAlunoFormatado;
+	}
+
+	public void setDataEntregaAlunoFormatado(String dataEntregaAlunoFormatado) {
+		this.dataEntregaAlunoFormatado = dataEntregaAlunoFormatado;
+	}
+
+	public String getDataEntregaProfessorFormatado() {
+		return dataEntregaProfessorFormatado;
+	}
+
+	public void setDataEntregaProfessorFormatado(String dataEntregaProfessorFormatado) {
+		this.dataEntregaProfessorFormatado = dataEntregaProfessorFormatado;
+	}
+}

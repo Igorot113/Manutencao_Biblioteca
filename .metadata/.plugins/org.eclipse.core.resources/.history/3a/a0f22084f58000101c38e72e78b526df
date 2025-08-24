@@ -1,0 +1,26 @@
+package util;
+
+import java.util.ArrayList;
+
+public class Emprestimo {
+	public int indiceLivro;
+	public String aluno;
+
+	public Emprestimo(int indiceLivro, String aluno, Livro livro) {
+		this.indiceLivro = indiceLivro;
+		this.aluno = aluno;
+		this.livro = livro;
+	}
+
+	public static void emprestarLivro(int indiceLivro, String aluno,Livro livro) {
+		emprestimos.add(new Emprestimo(indiceLivro, aluno,livro));
+		System.out.println("Livro \"" + livro.titulo + "\" emprestado para " + aluno);
+	}
+
+	public static void listarEmprestimos() {
+		System.out.println("Empréstimos realizados:");
+		for (Emprestimo e : emprestimos) {
+			System.out.println("Aluno: " + e.aluno + " | Livro: " + livros.get(e.indiceLivro).titulo);
+		}
+	}
+}

@@ -1,0 +1,14 @@
+package util;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
+import view.Emprestimo;
+
+public class Multa {
+	Emprestimo empres = new Emprestimo();
+	public long DiasdeMulta(LocalDate dataDevolvida) {
+		long diasMultas = ChronoUnit.DAYS.between(dataEntrega, dataDevolvida);
+		return diasMultas;
+	}
+}

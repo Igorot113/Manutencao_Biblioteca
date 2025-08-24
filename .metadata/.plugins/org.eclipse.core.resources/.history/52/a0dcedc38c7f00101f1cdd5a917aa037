@@ -1,0 +1,38 @@
+package view;
+
+import java.time.LocalDate;
+
+public class Emprestimo {
+	int indiceLivro;
+	String aluno;
+	LocalDate dataAtual;
+
+	public Emprestimo(int indiceLivro, String aluno) {
+		this.indiceLivro = indiceLivro;
+		this.aluno = aluno;
+	}
+
+	public int getIndiceLivro() {
+		return indiceLivro;
+	}
+
+	public void setIndiceLivro(int indiceLivro) {
+		this.indiceLivro = indiceLivro;
+	}
+
+	public String getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(String aluno) {
+		this.aluno = aluno;
+	}
+
+	public LocalDate getDataAtual() {
+		return dataAtual;
+	}
+
+	public void setDataAtual(LocalDate dataAtual) {
+		this.dataAtual = dataAtual;
+	}
+}

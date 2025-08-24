@@ -1,0 +1,72 @@
+package util;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
+
+public class Data {
+	LocalDate dataAtual = LocalDate.now();
+	LocalDate dataEntregaAluno = dataAtual.plusDays(7);
+	LocalDate dataEntregaProfessor = dataAtual.plusDays(15);
+
+	DateTimeFormatter formatoBrasileiro = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+	String dataFormatada = dataAtual.format(formatoBrasileiro);
+	String dataEntregaAlunoFormatado = dataEntregaAluno.format(formatoBrasileiro);
+	String dataEntregaProfessorFormatado = dataEntregaProfessor.format(formatoBrasileiro);
+
+	public LocalDate DataEntrada() {
+		Scanner leia = new Scanner(System.in);
+		System.out.print("Digite a data que voce entregou o livro: ");
+		String dataEntrada = leia.nextLine();
+		LocalDate dataEntregaReal = null;
+		try {
+			dataEntregaReal = LocalDate.parse(dataEntrada, formatoBrasileiro);
+		} catch (DateTimeParseException e) {
+			System.err.println("Erro: Formato invalido");
+		}
+		leia.close();
+		return dataEntregaReal;
+	}
+
+	public String getDataFormatada() {
+		return dataFormatada;
+	}
+
+	public void setDataFormatada(String dataFormatada) {
+		this.dataFormatada = dataFormatada;
+	}
+
+	public LocalDate getDataEntregaAluno() {
+		return dataEntregaAluno;
+	}
+
+	public void setDataEntregaAluno(LocalDate dataEntregaAluno) {
+		this.dataEntregaAluno = dataEntregaAluno;
+	}
+
+	public LocalDate getDataEntregaProfessor() {
+		return dataEntregaProfessor;
+	}
+
+	public void setDataEntregaProfessor(LocalDate dataEntregaProfessor) {
+		this.dataEntregaProfessor = dataEntregaProfessor;
+	}
+
+	public String getDataEntregaAlunoFormatado() {
+		return dataEntregaAlunoFormatado;
+	}
+
+	public void setDataEntregaAlunoFormatado(String dataEntregaAlunoFormatado) {
+		this.dataEntregaAlunoFormatado = dataEntregaAlunoFormatado;
+	}
+
+	public String getDataEntregaProfessorFormatado() {
+		return dataEntregaProfessorFormatado;
+	}
+
+	public void setDataEntregaProfessorFormatado(String dataEntregaProfessorFormatado) {
+		this.dataEntregaProfessorFormatado = dataEntregaProfessorFormatado;
+	}
+}
